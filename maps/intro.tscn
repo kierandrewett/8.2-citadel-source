@@ -1,25 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpynmwby4br0l"]
+[gd_scene load_steps=6 format=3 uid="uid://cpynmwby4br0l"]
 
 [ext_resource type="VideoStream" path="res://resources/intro.ogv" id="1_p6t66"]
 [ext_resource type="Script" path="res://scripts/intro.gd" id="2_ifk0f"]
 [ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="3_ncbgk"]
 [ext_resource type="Texture2D" uid="uid://dlerqjt606avv" path="res://resources/round_rect.svg" id="4_yaco2"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uy183"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_yaco2")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
 [node name="Intro" type="Node2D"]
 
-[node name="IntroMovie" type="Control" parent="."]
+[node name="IntroMovie" type="Control" parent="." groups=["window_xy"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="IntroMovie"]
+[node name="ColorRect" type="ColorRect" parent="IntroMovie" groups=["window_xy"]]
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="IntroMovie"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="IntroMovie" groups=["window_xy"]]
 z_index = 2
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 size_flags_horizontal = 3
@@ -32,35 +45,49 @@ script = ExtResource("2_ifk0f")
 [node name="LoadingScreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
-[node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" groups=["window_xy"]]
+layout_mode = 2
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.403922, 0.403922, 0.403922, 1)
 
-[node name="LoadingText" type="NinePatchRect" parent="LoadingScreen"]
-offset_left = 1152.0
-offset_top = 662.0
-offset_right = 1264.0
-offset_bottom = 704.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_ncbgk")
-texture = ExtResource("4_yaco2")
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+[node name="LoadingText" type="MarginContainer" parent="LoadingScreen" groups=["window_xy"]]
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
-[node name="Label" type="Label" parent="LoadingScreen/LoadingText"]
+[node name="BoxContainer" type="BoxContainer" parent="LoadingScreen/LoadingText"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="LoadingTextContainer" type="Panel" parent="LoadingScreen/LoadingText/BoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(114, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uy183")
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadingScreen/LoadingText/BoxContainer/LoadingTextContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="LoadingScreen/LoadingText/BoxContainer/LoadingTextContainer/MarginContainer"]
+layout_mode = 2
 theme = ExtResource("3_ncbgk")
 theme_override_font_sizes/font_size = 16
 text = "Loading..."
