@@ -1,0 +1,195 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsex10iks6ray"]
+
+[ext_resource type="Script" path="res://ui/debug_text.gd" id="1_hxn83"]
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="1_q8utu"]
+[ext_resource type="Script" path="res://ui/gameui.gd" id="2_eib2f"]
+[ext_resource type="Texture2D" uid="uid://bnj6y2d1xviwh" path="res://resources/game_logo.svg" id="2_rfdtt"]
+
+[sub_resource type="Theme" id="Theme_g7ec6"]
+
+[sub_resource type="SystemFont" id="SystemFont_4bdil"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 500
+hinting = 0
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6eqj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a54it"]
+
+[node name="GameUI" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q8utu")
+script = ExtResource("2_eib2f")
+
+[node name="ColorRect" type="ColorRect" parent="." groups=["window_xy"]]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.313726)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" groups=["window_xy"]]
+layout_mode = 2
+
+[node name="DebugText" type="Label" parent="MarginContainer/HBoxContainer" groups=["window_x"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_q8utu")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+horizontal_alignment = 2
+clip_text = true
+text_overrun_behavior = 3
+script = ExtResource("1_hxn83")
+
+[node name="Console" type="Window" parent="."]
+transparent_bg = true
+title = "Console"
+position = Vector2i(20, 20)
+visible = false
+always_on_top = true
+popup_window = true
+theme = SubResource("Theme_g7ec6")
+theme_override_fonts/title_font = SubResource("SystemFont_4bdil")
+theme_override_font_sizes/title_font_size = 11
+theme_override_styles/embedded_border = SubResource("StyleBoxEmpty_h6eqj")
+
+[node name="ColorRect" type="ColorRect" parent="Console"]
+offset_top = 7284.0
+offset_right = 67.0
+offset_bottom = 7284.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Console"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Console/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+text = "Convar developer has multiple help strings:
+	parent (wins): \"Set developer message level\"
+	child: \"Set developer message level.\"
+maxplayers set to 1
+Steam config directory: Z:\\home\\kieran\\.local\\share\\Steam\\steamapps\\common\\Half-Life 2\\platform\\config
+CClientSteamContext logged on = 1
+Convar developer has multiple help strings:
+	parent (wins): \"Set developer message level\"
+	child: \"Set developer message level.\"
+Unknown command \"cl_thirdperson\"
+Can't use cheat cvar cam_snapto in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_ideallag in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealdelta in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealyaw in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealpitch in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealdist in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealdistright in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_idealdistup in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar cam_collision in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_maxpitch in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_minpitch in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_maxyaw in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_minyaw in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_maxdistance in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_mindistance in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_orthowidth in multiplayer, unless the server has sv_cheats set to 1.
+"
+fit_content = true
+selection_enabled = true
+
+[node name="LineEdit" type="LineEdit" parent="Console/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenu" type="MarginContainer" parent="." groups=["window_y"]]
+layout_mode = 0
+offset_right = 552.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 76
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+texture = ExtResource("2_rfdtt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+theme_override_constants/separation = 12
+
+[node name="ResumeGameButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0.705882)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 13
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a54it")
+action_mode = 0
+text = "RESUME GAME"
+flat = true
+alignment = 0
+
+[node name="NewGameButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "NEW GAME"
+alignment = 0
+
+[node name="LoadGameButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "LOAD GAME"
+alignment = 0
+
+[node name="SaveGameButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "SAVE GAME"
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "OPTIONS"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "QUIT"
+alignment = 0
+
+[connection signal="child_entered_tree" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="child_exiting_tree" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="draw" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render" binds= [0]]
+[connection signal="tree_entered" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="tree_exited" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="tree_exiting" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]

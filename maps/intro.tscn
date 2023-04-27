@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpynmwby4br0l"]
+
+[ext_resource type="VideoStream" path="res://resources/intro.ogv" id="1_p6t66"]
+[ext_resource type="Script" path="res://scripts/intro.gd" id="2_ifk0f"]
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="3_ncbgk"]
+[ext_resource type="Texture2D" uid="uid://dlerqjt606avv" path="res://resources/round_rect.svg" id="4_yaco2"]
+
+[node name="Intro" type="Node2D"]
+
+[node name="IntroMovie" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="IntroMovie"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="IntroMovie"]
+z_index = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+stream = ExtResource("1_p6t66")
+expand = true
+script = ExtResource("2_ifk0f")
+
+[node name="LoadingScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.403922, 0.403922, 0.403922, 1)
+
+[node name="LoadingText" type="NinePatchRect" parent="LoadingScreen"]
+offset_left = 1152.0
+offset_top = 662.0
+offset_right = 1264.0
+offset_bottom = 704.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_ncbgk")
+texture = ExtResource("4_yaco2")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="LoadingScreen/LoadingText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ncbgk")
+theme_override_font_sizes/font_size = 16
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="finished" from="IntroMovie/VideoStreamPlayer" to="IntroMovie/VideoStreamPlayer" method="_finished"]
