@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6jvlp1cfsk6k"]
+[gd_scene load_steps=4 format=3 uid="uid://br23ae6jc08k2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sexsu"]
 size = Vector3(10, 0.001, 10)
@@ -8,7 +8,7 @@ size = Vector3(10, 0, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4vxsc"]
 
-[node name="background01" type="Node3D"]
+[node name="background02" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -20,7 +20,7 @@ mesh = SubResource("BoxMesh_cerrx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.171688, 0.985151, 0, -0.985151, 0.171688, 0, 2.91427, 0)
-light_color = Color(0.807843, 0.0980392, 0.152941, 1)
+light_color = Color(0, 0.533333, 0.556863, 1)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]

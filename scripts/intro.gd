@@ -1,11 +1,18 @@
 extends VideoStreamPlayer
 
-var backgrounds = ["background01"]
+var backgrounds = ["background01", "background02", "background03"]
 
 var loaded = false
 
+var intro = null
+var gameui = null
+
 func _ready():
-	get_tree().current_scene.get_node("LoadingScreen").visible = false
+	intro = get_parent().get_node("/root/Intro")
+	gameui = get_parent().get_node("/root/GameUI")
+	
+	intro.get_node("LoadingScreen").visible = false
+	gameui.get_node("MainMenu").modulate.a = 0
 	
 	print("init: starting intro playback")
 	await get_tree().create_timer(1.0).timeout
@@ -27,28 +34,24 @@ func load_main_scene():
 	
 	print("init: loading main scene")
 	
-	get_tree().current_scene.get_node("IntroMovie").visible = false
-	get_tree().current_scene.get_node("LoadingScreen").visible = true
+	intro.get_node("IntroMovie").visible = false
+	intro.get_node("LoadingScreen").visible = true
 	
 	var bg = backgrounds[randi() % backgrounds.size()]
 	
-	var background_scene_res = ResourceLoader.load("res://maps/%s.tscn" % [bg])
-	var background_scene = background_scene_res.instantiate()
-
-	get_parent().add_child(background_scene)
+	Maps.load_map(bg)
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	var tween = get_tree().create_tween()
-	var loading_color_rect = get_tree().current_scene.get_node("LoadingScreen").get_node("ColorRect")
+	intro.get_node("LoadingScreen").get_node("LoadingText").modulate.a = 0
 	
-	get_tree().current_scene.get_node("LoadingScreen").get_node("LoadingText").modulate.a = 0
-	tween.tween_property(loading_color_rect, "modulate", Color.TRANSPARENT, 2)
+	intro.create_tween().tween_property(gameui.get_node("MainMenu"), "modulate", Color.WHITE, 2)
+	intro.create_tween().tween_property(intro.get_node("LoadingScreen").get_node("ColorRect"), "modulate", Color.TRANSPARENT, 2)
 
 	await get_tree().create_timer(2).timeout
 	
 	print("init: unloading loading screen")
-	get_tree().current_scene.get_node("LoadingScreen").visible = false
+	intro.get_node("LoadingScreen").visible = false
 	
 func _finished():
 	await get_tree().create_timer(0.5).timeout

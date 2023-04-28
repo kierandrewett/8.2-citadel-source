@@ -2,6 +2,9 @@ extends Control
 
 func _ready():
 	get_viewport().connect("size_changed", Callable(self, "on_window_resize"))
+	Maps.connect("map_changed", Callable(self, "on_map_loaded"))
+	
+	self.visible = false
 
 func on_window_resize():
 	var size = get_viewport_rect().size
@@ -18,3 +21,27 @@ func on_window_resize():
 
 	for node in get_tree().get_nodes_in_group("window_y"):
 		node.set_size(Vector2(node.get_size().x, y))
+
+func set_visibility(node, state):
+	if state:
+		node.process_mode = 0
+		node.focus_mode = FOCUS_ALL
+		node.show()
+	else:
+		node.process_mode = 4
+		node.focus_mode = FOCUS_NONE
+		node.hide()
+		
+func on_map_loaded(map_path):
+	# Ensure that all buttons are visible before applying changes
+	for btn in get_node("MainMenu/VBoxContainer/VBoxContainer").get_children():
+		set_visibility(btn, true)
+
+	# If we are loading a background map, ensure that GameUI is visible initially
+	if Maps.current_name.begins_with("res://maps/background"):
+		self.visible = true
+		
+		set_visibility(get_node("MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton"), false)
+		set_visibility(get_node("MainMenu/VBoxContainer/VBoxContainer/SaveGameButton"), false)
+	else:
+		self.visible = false

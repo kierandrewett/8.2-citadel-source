@@ -20,11 +20,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameUI="*res://ui/gameui.tscn"
+Maps="*res://scripts/maps.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
 
 [input]
 

@@ -1,4 +1,18 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dg85bj1idrpik"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dg85bj1idrpik"]
+
+[ext_resource type="Texture2D" uid="uid://dlerqjt606avv" path="res://resources/round_rect.svg" id="1_xmcnf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ax8g6"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25, 0.25, 0.25, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="SystemFont" id="SystemFont_tw2ho"]
 font_names = PackedStringArray("Sans-Serif")
@@ -25,6 +39,9 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwffl"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpc7b"]
+texture = ExtResource("1_xmcnf")
+
 [sub_resource type="SystemFont" id="SystemFont_nxexp"]
 font_names = PackedStringArray("Sans-Serif")
 hinting = 0
@@ -33,6 +50,8 @@ subpixel_positioning = 0
 [resource]
 default_font = SubResource("SystemFont_nxexp")
 default_font_size = 11
+AcceptDialog/constants/buttons_separation = 10
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_ax8g6")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(1, 1, 1, 0.501961)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
@@ -55,3 +74,4 @@ Button/styles/focus = SubResource("StyleBoxEmpty_rjfbd")
 Button/styles/hover = SubResource("StyleBoxEmpty_g2eki")
 Button/styles/normal = SubResource("StyleBoxEmpty_2h0mr")
 Button/styles/pressed = SubResource("StyleBoxEmpty_lwffl")
+PopupDialog/styles/panel = SubResource("StyleBoxTexture_qpc7b")

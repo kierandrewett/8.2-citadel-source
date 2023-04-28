@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddnhkbxuwh78f"]
+
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="1_2f4jj"]
+
+[node name="gameui_quit_dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+title = "Are you sure you want to quit?"
+visible = true
+theme = ExtResource("1_2f4jj")

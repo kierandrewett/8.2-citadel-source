@@ -17,8 +17,10 @@ texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 
 [node name="Intro" type="Node2D"]
+z_index = 1001
 
 [node name="IntroMovie" type="Control" parent="." groups=["window_xy"]]
+z_index = 1001
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -43,16 +45,18 @@ expand = true
 script = ExtResource("2_ifk0f")
 
 [node name="LoadingScreen" type="Control" parent="."]
+process_mode = 4
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="LoadingScreen" groups=["window_xy"]]
 layout_mode = 2
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.403922, 0.403922, 0.403922, 1)
+color = Color(0.360784, 0.360784, 0.360784, 0.627451)
 
 [node name="LoadingText" type="MarginContainer" parent="LoadingScreen" groups=["window_xy"]]
 layout_mode = 2
