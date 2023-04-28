@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dg85bj1idrpik"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dg85bj1idrpik"]
 
 [ext_resource type="Texture2D" uid="uid://dlerqjt606avv" path="res://resources/round_rect.svg" id="1_xmcnf"]
 
@@ -14,7 +14,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="SystemFont" id="SystemFont_tw2ho"]
+[sub_resource type="SystemFont" id="SystemFont_nxexp"]
 font_names = PackedStringArray("Sans-Serif")
 hinting = 0
 subpixel_positioning = 0
@@ -42,11 +42,6 @@ corner_detail = 5
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpc7b"]
 texture = ExtResource("1_xmcnf")
 
-[sub_resource type="SystemFont" id="SystemFont_nxexp"]
-font_names = PackedStringArray("Sans-Serif")
-hinting = 0
-subpixel_positioning = 0
-
 [resource]
 default_font = SubResource("SystemFont_nxexp")
 default_font_size = 11
@@ -68,7 +63,7 @@ Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 2
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 13
-Button/fonts/font = SubResource("SystemFont_tw2ho")
+Button/fonts/font = SubResource("SystemFont_nxexp")
 Button/styles/disabled = SubResource("StyleBoxFlat_ewcqq")
 Button/styles/focus = SubResource("StyleBoxEmpty_rjfbd")
 Button/styles/hover = SubResource("StyleBoxEmpty_g2eki")

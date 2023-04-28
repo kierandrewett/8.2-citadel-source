@@ -14,7 +14,7 @@ func _ready():
 	intro.get_node("LoadingScreen").visible = false
 	gameui.get_node("MainMenu").modulate.a = 0
 	
-	print("init: starting intro playback")
+	Console.log("init: starting intro playback")
 	await get_tree().create_timer(1.0).timeout
 	play()
 	
@@ -23,7 +23,7 @@ func _input(event):
 		return
 	
 	if  (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
-		print("init: user gesture received aborting intro")
+		Console.log("init: user gesture received aborting intro")
 		load_main_scene()
 	
 func load_main_scene():
@@ -32,7 +32,7 @@ func load_main_scene():
 	
 	loaded = true
 	
-	print("init: loading main scene")
+	Console.log("init: loading main scene")
 	
 	intro.get_node("IntroMovie").visible = false
 	intro.get_node("LoadingScreen").visible = true
@@ -50,7 +50,7 @@ func load_main_scene():
 
 	await get_tree().create_timer(2).timeout
 	
-	print("init: unloading loading screen")
+	Console.log("init: unloading loading screen")
 	intro.get_node("LoadingScreen").visible = false
 	
 func _finished():

@@ -1,20 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsex10iks6ray"]
+[gd_scene load_steps=13 format=3 uid="uid://bsex10iks6ray"]
 
 [ext_resource type="Script" path="res://ui/debug_text.gd" id="1_hxn83"]
 [ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="1_q8utu"]
 [ext_resource type="Script" path="res://ui/gameui.gd" id="2_eib2f"]
 [ext_resource type="Texture2D" uid="uid://bnj6y2d1xviwh" path="res://resources/game_logo.svg" id="2_rfdtt"]
+[ext_resource type="Script" path="res://ui/gameui_console.gd" id="4_bpy0i"]
 [ext_resource type="Script" path="res://ui/gameui_action.gd" id="5_3lkbc"]
 
-[sub_resource type="Theme" id="Theme_g7ec6"]
+[sub_resource type="SystemFont" id="SystemFont_xxlui"]
+font_names = PackedStringArray("Monospace")
 
-[sub_resource type="SystemFont" id="SystemFont_4bdil"]
-font_names = PackedStringArray("Sans-Serif")
-font_weight = 500
-hinting = 0
-subpixel_positioning = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4gsr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6eqj"]
+[sub_resource type="SystemFont" id="SystemFont_rvuh5"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6i7xm"]
+bg_color = Color(0.337255, 0.337255, 0.337255, 1)
+border_width_left = 4
+border_width_right = 4
+border_color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xpht"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a54it"]
 
@@ -65,31 +72,59 @@ text_overrun_behavior = 3
 script = ExtResource("1_hxn83")
 
 [node name="Console" type="Window" parent="."]
-transparent_bg = true
 title = "Console"
-position = Vector2i(20, 20)
-visible = false
+position = Vector2i(100, 100)
+size = Vector2i(600, 400)
 always_on_top = true
 popup_window = true
-theme = SubResource("Theme_g7ec6")
-theme_override_fonts/title_font = SubResource("SystemFont_4bdil")
-theme_override_font_sizes/title_font_size = 11
-theme_override_styles/embedded_border = SubResource("StyleBoxEmpty_h6eqj")
+min_size = Vector2i(100, 100)
+theme_override_constants/resize_margin = 16
 
 [node name="ColorRect" type="ColorRect" parent="Console"]
-offset_top = 7284.0
-offset_right = 67.0
-offset_bottom = 7284.0
+offset_top = -24.0
+offset_right = 100.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.52549, 0.188235, 0.266667, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Console"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ConsoleContainer" type="VBoxContainer" parent="Console"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Console/VBoxContainer"]
+[node name="ConsoleTextContainer" type="Control" parent="Console/ConsoleContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Console/ConsoleContainer/ConsoleTextContainer"]
+layout_mode = 2
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.560784, 0.188235, 0.25098, 1)
+
+[node name="ConsoleText" type="RichTextLabel" parent="Console/ConsoleContainer/ConsoleTextContainer"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
 focus_mode = 2
+theme = ExtResource("1_q8utu")
+theme_override_fonts/normal_font = SubResource("SystemFont_xxlui")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n4gsr")
 text = "Convar developer has multiple help strings:
 	parent (wins): \"Set developer message level\"
 	child: \"Set developer message level.\"
@@ -116,12 +151,24 @@ Can't use cheat cvar c_minyaw in multiplayer, unless the server has sv_cheats se
 Can't use cheat cvar c_maxdistance in multiplayer, unless the server has sv_cheats set to 1.
 Can't use cheat cvar c_mindistance in multiplayer, unless the server has sv_cheats set to 1.
 Can't use cheat cvar c_orthowidth in multiplayer, unless the server has sv_cheats set to 1.
+Can't use cheat cvar c_orthoheight in multiplayer, unless the server has sv_cheats set to 1.
+Unknown command \"sv_backspeed\"
+Not playing a local game.
+--- Missing Vgui material vgui/servers/icon_replay
+--- Missing Vgui material vgui/servers/icon_replay_column
 "
-fit_content = true
 selection_enabled = true
 
-[node name="LineEdit" type="LineEdit" parent="Console/VBoxContainer"]
+[node name="ConsoleInput" type="LineEdit" parent="Console/ConsoleContainer"]
+custom_minimum_size = Vector2(100, 28)
 layout_mode = 2
+theme = ExtResource("1_q8utu")
+theme_override_fonts/font = SubResource("SystemFont_rvuh5")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_6i7xm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3xpht")
+text = "dfghdfg"
+script = ExtResource("4_bpy0i")
 
 [node name="MainMenu" type="MarginContainer" parent="." groups=["window_y"]]
 layout_mode = 0
@@ -200,6 +247,7 @@ alignment = 0
 [connection signal="tree_entered" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="tree_exited" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="tree_exiting" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="text_submitted" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="eval"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_resume"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/NewGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_new_game"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/LoadGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_load_game"]]

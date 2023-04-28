@@ -3,12 +3,17 @@ extends Node
 var current_name = ""
 var current_scene = null
 
+var initted = false
+
 signal map_changed(map_path)
 
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	current_name = current_scene.scene_file_path
+
+func is_background():
+	return Maps.current_name.begins_with("res://maps/background")
 
 func load_map(name):
 	call_deferred("_deferred_load_map", name)
@@ -34,4 +39,5 @@ func _deferred_load_map(name):
 	current_name = map_path
 	
 	map_changed.emit(map_path)
-	print("maps: loaded %s in %sms" % [name, Time.get_ticks_msec() - start_ms])
+	initted = true
+	Console.log("maps: loaded %s in %sms" % [name, Time.get_ticks_msec() - start_ms])
