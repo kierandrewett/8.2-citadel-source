@@ -57,3 +57,6 @@ func on_map_loaded(map_path):
 		set_visibility(get_node("MainMenu/VBoxContainer/VBoxContainer/SaveGameButton"), false)
 	else:
 		self.visible = false
+
+func on_console_close_requested():
+	self.get_node("Console").visible = false

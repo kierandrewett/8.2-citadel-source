@@ -125,38 +125,6 @@ theme = ExtResource("1_q8utu")
 theme_override_fonts/normal_font = SubResource("SystemFont_xxlui")
 theme_override_font_sizes/normal_font_size = 13
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n4gsr")
-text = "Convar developer has multiple help strings:
-	parent (wins): \"Set developer message level\"
-	child: \"Set developer message level.\"
-maxplayers set to 1
-Steam config directory: Z:\\home\\kieran\\.local\\share\\Steam\\steamapps\\common\\Half-Life 2\\platform\\config
-CClientSteamContext logged on = 1
-Convar developer has multiple help strings:
-	parent (wins): \"Set developer message level\"
-	child: \"Set developer message level.\"
-Unknown command \"cl_thirdperson\"
-Can't use cheat cvar cam_snapto in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_ideallag in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealdelta in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealyaw in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealpitch in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealdist in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealdistright in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_idealdistup in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar cam_collision in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_maxpitch in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_minpitch in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_maxyaw in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_minyaw in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_maxdistance in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_mindistance in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_orthowidth in multiplayer, unless the server has sv_cheats set to 1.
-Can't use cheat cvar c_orthoheight in multiplayer, unless the server has sv_cheats set to 1.
-Unknown command \"sv_backspeed\"
-Not playing a local game.
---- Missing Vgui material vgui/servers/icon_replay
---- Missing Vgui material vgui/servers/icon_replay_column
-"
 selection_enabled = true
 
 [node name="ConsoleInput" type="LineEdit" parent="Console/ConsoleContainer"]
@@ -167,7 +135,6 @@ theme_override_fonts/font = SubResource("SystemFont_rvuh5")
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_6i7xm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3xpht")
-text = "dfghdfg"
 clear_button_enabled = true
 deselect_on_focus_loss_enabled = false
 script = ExtResource("4_bpy0i")
@@ -249,6 +216,7 @@ alignment = 0
 [connection signal="tree_entered" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="tree_exited" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="tree_exiting" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
+[connection signal="close_requested" from="Console" to="." method="on_console_close_requested"]
 [connection signal="text_submitted" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="eval"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_resume"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/NewGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_new_game"]]
