@@ -24,7 +24,3 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_g3hfa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69489, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21338, 4.61284)
-fov = 58.1545

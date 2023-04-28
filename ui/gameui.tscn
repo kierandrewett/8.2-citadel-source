@@ -203,6 +203,12 @@ theme = ExtResource("1_q8utu")
 text = "OPTIONS"
 alignment = 0
 
+[node name="ConsoleButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q8utu")
+text = "CONSOLE"
+alignment = 0
+
 [node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_q8utu")
@@ -223,4 +229,5 @@ alignment = 0
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/LoadGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_load_game"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/SaveGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_save_game"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/OptionsButton" to="MainMenu" method="on_button_click" binds= [&"gameui_options"]]
+[connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ConsoleButton" to="MainMenu" method="on_button_click" binds= ["gameui_console"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/QuitButton" to="MainMenu" method="on_button_click" binds= [&"gameui_quit"]]

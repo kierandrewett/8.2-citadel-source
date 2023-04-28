@@ -15,29 +15,52 @@ func _ready():
 func is_background():
 	return Maps.current_name.begins_with("res://maps/background")
 
+func get_maps():
+	var files = []
+	var dir = DirAccess.open("res://maps/")
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with(".") and file.ends_with(".tscn"):
+			files.append(file.split(".")[0])
+	return files
+
 func load_map(name):
-	call_deferred("_deferred_load_map", name)
+	return call_deferred("_deferred_load_map", name)
 
 func _deferred_load_map(name):
 	var start_ms = Time.get_ticks_msec()
-	
-	if current_scene:
-		current_scene.free()
 
 	if !name.ends_with(".tscn"):
 		name = name + ".tscn"
 
 	var map_path = "res://maps/%s" % [name]
 
-	var map_resource = ResourceLoader.load(map_path)
-	var current_scene = map_resource.instantiate()
+	if map_path == ProjectSettings.get_setting("application/run/main_scene"):
+		Console.log("Illegal map load from '%s'." % [name])
+		return false
 
-	get_parent().add_child(current_scene)
-	
-	get_tree().current_scene = current_scene
+	if ResourceLoader.exists(map_path):
+		if current_scene and ProjectSettings.get_setting("application/run/main_scene") != current_name:
+			current_scene.queue_free()
 
-	current_name = map_path
+		var map_resource = ResourceLoader.load(map_path)
+		current_scene = map_resource.instantiate()
+			
+		get_parent().add_child(current_scene)
+		
+		get_tree().current_scene = current_scene
+
+		current_name = map_path
+		
+		map_changed.emit(map_path)
+		initted = true
+		Console.log("maps: loaded %s in %sms" % [name, Time.get_ticks_msec() - start_ms])
 	
-	map_changed.emit(map_path)
-	initted = true
-	Console.log("maps: loaded %s in %sms" % [name, Time.get_ticks_msec() - start_ms])
+		return true
+	else:
+		Console.log("No map found by name '%s'" % [name])
+		return false
