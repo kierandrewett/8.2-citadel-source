@@ -8,6 +8,7 @@ func _ready():
 	console_input = get_parent().get_node("/root/GameUI/Console/ConsoleContainer/ConsoleInput")
 	raw_console_text.text = ""
 	console_input.text = ""
+	self.close()
 
 func close():
 	get_parent().get_node("/root/GameUI/Console").visible = false

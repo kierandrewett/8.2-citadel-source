@@ -168,6 +168,8 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_6i7xm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3xpht")
 text = "dfghdfg"
+clear_button_enabled = true
+deselect_on_focus_loss_enabled = false
 script = ExtResource("4_bpy0i")
 
 [node name="MainMenu" type="MarginContainer" parent="." groups=["window_y"]]

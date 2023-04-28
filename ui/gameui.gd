@@ -1,5 +1,7 @@
 extends Control
 
+var was_last_input_esc = false
+
 func _ready():
 	get_viewport().connect("size_changed", Callable(self, "on_window_resize"))
 	Maps.connect("map_changed", Callable(self, "on_map_loaded"))
@@ -25,9 +27,12 @@ func on_window_resize():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("gameui_console") and Maps.initted:
 		self.get_node("Console").visible = !self.get_node("Console").visible
+		if !Maps.is_background() and self.get_node("Console").visible:
+			self.visible = true
 	
 	if Input.is_action_just_pressed("gameui_menu") and !Maps.is_background():
 		self.visible = !self.visible
+		self.get_node("Console").visible = self.visible
 
 func set_visibility(node, state):
 	if state:
