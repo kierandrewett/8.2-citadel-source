@@ -1,6 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dg85bj1idrpik"]
-
-[ext_resource type="Texture2D" uid="uid://dlerqjt606avv" path="res://resources/round_rect.svg" id="1_xmcnf"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dg85bj1idrpik"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ax8g6"]
 content_margin_left = 8.0
@@ -39,9 +37,6 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwffl"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpc7b"]
-texture = ExtResource("1_xmcnf")
-
 [resource]
 default_font = SubResource("SystemFont_nxexp")
 default_font_size = 11
@@ -69,4 +64,4 @@ Button/styles/focus = SubResource("StyleBoxEmpty_rjfbd")
 Button/styles/hover = SubResource("StyleBoxEmpty_g2eki")
 Button/styles/normal = SubResource("StyleBoxEmpty_2h0mr")
 Button/styles/pressed = SubResource("StyleBoxEmpty_lwffl")
-PopupDialog/styles/panel = SubResource("StyleBoxTexture_qpc7b")
+PopupDialog/styles/panel = null

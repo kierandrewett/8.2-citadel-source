@@ -11,7 +11,6 @@ func _ready():
 	intro = get_parent().get_node("/root/Intro")
 	gameui = get_parent().get_node("/root/GameUI")
 	
-	intro.get_node("LoadingScreen").visible = false
 	gameui.get_node("MainMenu").modulate.a = 0
 	
 	Console.log("init: starting intro playback")
@@ -22,7 +21,7 @@ func _input(event):
 	if loaded:
 		return
 	
-	if  (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
+	if (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
 		Console.log("init: user gesture received aborting intro")
 		load_main_scene()
 	
@@ -35,23 +34,10 @@ func load_main_scene():
 	Console.log("init: loading main scene")
 	
 	intro.get_node("IntroMovie").visible = false
-	intro.get_node("LoadingScreen").visible = true
-	
+
 	var bg = backgrounds[randi() % backgrounds.size()]
 	
 	Maps.load_map(bg)
-	
-	await get_tree().create_timer(1.5).timeout
-	
-	intro.get_node("LoadingScreen").get_node("LoadingText").modulate.a = 0
-	
-	intro.create_tween().tween_property(gameui.get_node("MainMenu"), "modulate", Color.WHITE, 2)
-	intro.create_tween().tween_property(intro.get_node("LoadingScreen").get_node("ColorRect"), "modulate", Color.TRANSPARENT, 2)
-
-	await get_tree().create_timer(2).timeout
-	
-	Console.log("init: unloading loading screen")
-	intro.get_node("LoadingScreen").visible = false
 	
 func _finished():
 	await get_tree().create_timer(0.5).timeout

@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvavaasfcy7m8"]
+
+[ext_resource type="Script" path="res://ui/gameui_loading.gd" id="1_10wym"]
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="2_4gw5a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7lmf"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="GameUILoading" type="Control" groups=["window_xy"]]
+z_index = 4000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_10wym")
+
+[node name="LoadingScreen" type="Control" parent="."]
+z_index = 1000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" groups=["window_xy"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.360784, 0.360784, 0.627451)
+
+[node name="LoadingText" type="MarginContainer" parent="LoadingScreen" groups=["window_xy"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="BoxContainer" type="BoxContainer" parent="LoadingScreen/LoadingText"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="LoadingTextContainer" type="Panel" parent="LoadingScreen/LoadingText/BoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(114, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_4gw5a")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7lmf")
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadingScreen/LoadingText/BoxContainer/LoadingTextContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="LoadingScreen/LoadingText/BoxContainer/LoadingTextContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_4gw5a")
+theme_override_font_sizes/font_size = 16
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1

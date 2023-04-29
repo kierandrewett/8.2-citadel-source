@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_27c6v"]
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09025, 0)
 script = ExtResource("1_x8ewo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -16,6 +17,6 @@ shape = SubResource("CapsuleShape3D_xjpia")
 layers = 2
 mesh = SubResource("CapsuleMesh_27c6v")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.00257504)
 cull_mask = 1048573

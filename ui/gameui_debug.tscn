@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd0nrcx2d8epi"]
+
+[ext_resource type="Script" path="res://ui/gameui_debug.gd" id="1_ubgwu"]
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="1_uglwq"]
+
+[node name="GameUIDebug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ubgwu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_uglwq")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PlayerInformation" type="Label" parent="MarginContainer"]
+z_index = 2002
+layout_mode = 2
+theme = ExtResource("1_uglwq")
+theme_override_font_sizes/font_size = 10
+text = "name: Player
+pos:
+vel:
+"

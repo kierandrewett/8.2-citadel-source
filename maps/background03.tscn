@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://jcayqanvci7v"]
+[gd_scene load_steps=6 format=3 uid="uid://jcayqanvci7v"]
+
+[ext_resource type="Texture2D" uid="uid://cxoc7avlj0q7s" path="res://resources/100x100.svg" id="1_xyp8a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sexsu"]
 size = Vector3(10, 0.001, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2isa"]
+albedo_texture = ExtResource("1_xyp8a")
 
 [sub_resource type="BoxMesh" id="BoxMesh_cerrx"]
 size = Vector3(10, 0, 10)
@@ -16,6 +21,7 @@ size = Vector3(10, 0, 10)
 shape = SubResource("BoxShape3D_sexsu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_m2isa")
 mesh = SubResource("BoxMesh_cerrx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

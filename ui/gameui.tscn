@@ -21,7 +21,7 @@ border_width_left = 4
 border_width_right = 4
 border_color = Color(0.337255, 0.337255, 0.337255, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xpht"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkl7w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a54it"]
 
@@ -75,6 +75,7 @@ script = ExtResource("1_hxn83")
 title = "Console"
 position = Vector2i(100, 100)
 size = Vector2i(600, 400)
+visible = false
 always_on_top = true
 popup_window = true
 min_size = Vector2i(100, 100)
@@ -134,9 +135,9 @@ theme = ExtResource("1_q8utu")
 theme_override_fonts/font = SubResource("SystemFont_rvuh5")
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_6i7xm")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3xpht")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rkl7w")
 clear_button_enabled = true
-deselect_on_focus_loss_enabled = false
+select_all_on_focus = true
 script = ExtResource("4_bpy0i")
 
 [node name="MainMenu" type="MarginContainer" parent="." groups=["window_y"]]
@@ -204,6 +205,7 @@ text = "OPTIONS"
 alignment = 0
 
 [node name="ConsoleButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_q8utu")
 text = "CONSOLE"
@@ -223,6 +225,7 @@ alignment = 0
 [connection signal="tree_exited" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="tree_exiting" from="MarginContainer/HBoxContainer/DebugText" to="MarginContainer/HBoxContainer/DebugText" method="render"]
 [connection signal="close_requested" from="Console" to="." method="on_console_close_requested"]
+[connection signal="gui_input" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="on_input"]
 [connection signal="text_submitted" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="eval"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_resume"]]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/NewGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_new_game"]]

@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c32any2mpikl3"]
+[gd_scene load_steps=6 format=3 uid="uid://c32any2mpikl3"]
 
+[ext_resource type="Texture2D" uid="uid://cxoc7avlj0q7s" path="res://resources/100x100.svg" id="1_f34j3"]
 [ext_resource type="PackedScene" uid="uid://c50xo85rxqrgc" path="res://models/player.tscn" id="1_g3hfa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cci41"]
 size = Vector3(10, 0.001, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qm2hv"]
+albedo_texture = ExtResource("1_f34j3")
+uv1_scale = Vector3(27, 27, 27)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dumvf"]
 size = Vector3(10, 0, 10)
@@ -11,16 +16,18 @@ size = Vector3(10, 0, 10)
 [node name="d1_test" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_cci41")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_qm2hv")
 mesh = SubResource("BoxMesh_dumvf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.996647, -0.0818168, -3.57633e-09, 0, -4.37114e-08, 1, -0.0818168, 0.996647, 4.35648e-08, 4.34198, 2.91427, 0)
+transform = Transform3D(-0.996647, -0.0818168, -3.57633e-09, 0, -4.37114e-08, 1, -0.0818168, 0.996647, 4.35648e-08, 0.63833, 5.06354, 1.49466)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_g3hfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69489, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62836, 0)
