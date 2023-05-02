@@ -15,9 +15,11 @@ func _process(delta):
 	if Globals.cl_showpos == 1 and Maps.loaded_map:
 		var player = instance_from_id(Maps.player_id)
 
+		print(player.velocity)
+
 		if player != null:
 			lines.append("name: %s" % ["Player"])
 			lines.append("pos: %s" % ["%s %s %s" % ["%.2f" % player.global_position.x, "%.2f" % player.global_position.y, "%.2f" % player.global_position.z] if player else ""])
-			lines.append("vel: %s" % ["%.2f" % (player.speed) if player and player.speed else 0.0])
+			lines.append("vel: %s" % ["%.2f" % (player.current_accel) if player and player.current_accel else 0.0])
 	
 	player_information.text = "\n".join(lines)
