@@ -17,6 +17,9 @@ func open():
 func close():
 	get_parent().get_node("/root/GameUI/Console").visible = false
 
+func is_open():
+	return get_parent().get_node("/root/GameUI/Console").visible
+
 func log(msg):
 	print(msg)
 	raw_console_text.text = raw_console_text.text + str(msg) + "\n"

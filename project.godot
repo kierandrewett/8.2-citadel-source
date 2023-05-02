@@ -26,11 +26,15 @@ Console="*res://scripts/console.gd"
 GameUIDebug="*res://ui/gameui_debug.tscn"
 Utils="*res://scripts/utils.gd"
 DevelopmentHelpers="*res://scripts/development_helpers.gd"
+Sounds="*res://scripts/sounds.gd"
+GlobalEnvironment="*res://environment/environment.tscn"
+GameUIGUI="*res://ui/gameui_gui.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
 
 [editor_plugins]
 
@@ -154,6 +158,7 @@ noclip={
 
 [physics]
 
+common/physics_ticks_per_second=320
 3d/default_gravity=10.0
 
 [rendering]

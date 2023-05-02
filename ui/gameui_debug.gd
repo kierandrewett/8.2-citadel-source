@@ -8,15 +8,16 @@ func _ready():
 
 func _process(delta):
 	lines = []
-	
+
 	if Globals.cl_showfps == 1:
 		lines.append("%s fps on %s" % [str(Engine.get_frames_per_second()), Maps.current_scene.scene_file_path])
 		
-	if Globals.cl_showpos == 1:
-		var player = Maps.current_scene.get_node("Player")
-		
-		lines.append("name: %s" % ["Player"])
-		lines.append("pos: %s" % ["%s %s %s" % ["%.2f" % player.position.x, "%.2f" % player.position.y, "%.2f" % player.position.z] if player else ""])
-		lines.append("vel: %s" % ["%.2f" % (player.speed) if player else 0.0])
+	if Globals.cl_showpos == 1 and Maps.loaded_map:
+		var player = instance_from_id(Maps.player_id)
+
+		if player != null:
+			lines.append("name: %s" % ["Player"])
+			lines.append("pos: %s" % ["%s %s %s" % ["%.2f" % player.global_position.x, "%.2f" % player.global_position.y, "%.2f" % player.global_position.z] if player else ""])
+			lines.append("vel: %s" % ["%.2f" % (player.speed) if player and player.speed else 0.0])
 	
 	player_information.text = "\n".join(lines)

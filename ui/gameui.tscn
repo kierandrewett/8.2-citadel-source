@@ -144,7 +144,8 @@ script = ExtResource("4_bpy0i")
 layout_mode = 0
 offset_right = 552.0
 offset_bottom = 720.0
-theme_override_constants/margin_left = 76
+theme_override_constants/margin_left = 84
+theme_override_constants/margin_top = 84
 theme_override_constants/margin_bottom = 20
 script = ExtResource("5_3lkbc")
 
@@ -163,7 +164,7 @@ stretch_mode = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_q8utu")
-theme_override_constants/separation = 12
+theme_override_constants/separation = 14
 
 [node name="ResumeGameButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -204,13 +205,6 @@ theme = ExtResource("1_q8utu")
 text = "OPTIONS"
 alignment = 0
 
-[node name="ConsoleButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme = ExtResource("1_q8utu")
-text = "CONSOLE"
-alignment = 0
-
 [node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_q8utu")
@@ -228,9 +222,14 @@ alignment = 0
 [connection signal="gui_input" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="on_input"]
 [connection signal="text_submitted" from="Console/ConsoleContainer/ConsoleInput" to="Console/ConsoleContainer/ConsoleInput" method="eval"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_resume"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/ResumeGameButton" to="MainMenu" method="on_button_mouse_over"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/NewGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_new_game"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/NewGameButton" to="MainMenu" method="on_button_mouse_over"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/LoadGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_load_game"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/LoadGameButton" to="MainMenu" method="on_button_mouse_over"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/SaveGameButton" to="MainMenu" method="on_button_click" binds= [&"gameui_save_game"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/SaveGameButton" to="MainMenu" method="on_button_mouse_over"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/OptionsButton" to="MainMenu" method="on_button_click" binds= [&"gameui_options"]]
-[connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/ConsoleButton" to="MainMenu" method="on_button_click" binds= ["gameui_console"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/OptionsButton" to="MainMenu" method="on_button_mouse_over"]
 [connection signal="button_down" from="MainMenu/VBoxContainer/VBoxContainer/QuitButton" to="MainMenu" method="on_button_click" binds= [&"gameui_quit"]]
+[connection signal="mouse_entered" from="MainMenu/VBoxContainer/VBoxContainer/QuitButton" to="MainMenu" method="on_button_mouse_over"]

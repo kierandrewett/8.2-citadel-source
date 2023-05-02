@@ -6,4 +6,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if self.visible:
+		Sounds.stop_all_sounds()
+	
 	pass
