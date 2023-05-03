@@ -1,28 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://jcayqanvci7v"]
+[gd_scene load_steps=4 format=3 uid="uid://jcayqanvci7v"]
 
-[ext_resource type="Texture2D" uid="uid://cxoc7avlj0q7s" path="res://resources/100x100.svg" id="1_xyp8a"]
+[ext_resource type="Texture2D" uid="uid://cbulolf0li8ge" path="res://resources/1cm.svg" id="1_rgv8k"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sexsu"]
-size = Vector3(10, 0.001, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2isa"]
-albedo_texture = ExtResource("1_xyp8a")
-
-[sub_resource type="BoxMesh" id="BoxMesh_cerrx"]
-size = Vector3(10, 0, 10)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8hqc"]
+albedo_texture = ExtResource("1_rgv8k")
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_4vxsc"]
 
 [node name="background03" type="Node3D"]
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_sexsu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-material_override = SubResource("StandardMaterial3D_m2isa")
-mesh = SubResource("BoxMesh_cerrx")
+[node name="Ground" type="CSGBox3D" parent="." groups=["mat_concrete"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0482845, -0.250001, -0.000331879)
+size = Vector3(15, 0.002, 15)
+material = SubResource("StandardMaterial3D_m8hqc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.171688, 0.985151, 0, -0.985151, 0.171688, 0, 2.91427, 0)
