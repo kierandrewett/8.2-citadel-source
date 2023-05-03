@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl0jcv4bxowa3"]
+[gd_scene load_steps=10 format=3 uid="uid://cl0jcv4bxowa3"]
 
 [ext_resource type="Script" path="res://ui/gameui_gui.gd" id="1_1f7uq"]
+[ext_resource type="Theme" uid="uid://dg85bj1idrpik" path="res://ui/gameui.tres" id="2_a2yd1"]
 
 [sub_resource type="Theme" id="Theme_y72do"]
 
@@ -11,6 +12,30 @@ corner_radius_top_right = 999
 corner_radius_bottom_right = 999
 corner_radius_bottom_left = 999
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_466mx"]
+bg_color = Color(0, 0, 0, 0.254902)
+corner_radius_top_left = 36
+corner_radius_top_right = 36
+corner_radius_bottom_right = 36
+corner_radius_bottom_left = 36
+
+[sub_resource type="SystemFont" id="SystemFont_ff74j"]
+font_names = PackedStringArray("Sans-Serif")
+hinting = 2
+
+[sub_resource type="Theme" id="Theme_c2wqc"]
+default_font = SubResource("SystemFont_ff74j")
+default_font_size = 10
+
+[sub_resource type="SystemFont" id="SystemFont_xcn2d"]
+font_names = PackedStringArray("Sans-Serif")
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5isd"]
+line_spacing = 0.0
+font = SubResource("SystemFont_xcn2d")
+font_size = 29
+font_color = Color(0.976471, 0.85098, 0.172549, 1)
 
 [node name="gameui_gui" type="Control" groups=["window_xy"]]
 layout_mode = 3
@@ -67,3 +92,79 @@ offset_right = 11.0
 offset_bottom = 21.0
 theme = SubResource("Theme_y72do")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlpgp")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer" groups=["window_xy"]]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VFlowContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_a2yd1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_466mx")
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+dragger_visibility = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Health" type="Label" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_c2wqc")
+theme_override_colors/font_color = Color(0.976471, 0.85098, 0.172549, 1)
+text = "Health"
+vertical_alignment = 2
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -6
+
+[node name="Amount" type="Label" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_c2wqc")
+theme_override_colors/font_color = Color(0.976471, 0.85098, 0.172549, 1)
+theme_override_font_sizes/font_size = 29
+text = "100"
+label_settings = SubResource("LabelSettings_l5isd")
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true

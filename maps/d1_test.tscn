@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c32any2mpikl3"]
+[gd_scene load_steps=7 format=3 uid="uid://c32any2mpikl3"]
 
 [ext_resource type="Script" path="res://maps/d1_test.gd" id="1_xek7i"]
 [ext_resource type="Texture2D" uid="uid://cbulolf0li8ge" path="res://resources/1cm.svg" id="2_uiyfd"]
@@ -7,6 +7,14 @@
 albedo_texture = ExtResource("2_uiyfd")
 uv1_offset = Vector3(0, 0.25, 0)
 uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_qyxi6"]
+left_to_right = 0.0
+size = Vector3(10, 5, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_b62kd"]
+left_to_right = 0.0
+size = Vector3(10, 7, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud5ku"]
 albedo_texture = ExtResource("2_uiyfd")
@@ -37,6 +45,14 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.5, 0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00816, 2.24814, -3.50826)
 size = Vector3(6.04196, 5, 1.00976)
 material = SubResource("StandardMaterial3D_jetcl")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000492516, 2.694)
+mesh = SubResource("PrismMesh_qyxi6")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160407, -0.000492516, 4.41811)
+mesh = SubResource("PrismMesh_b62kd")
 
 [node name="Ground" type="CSGBox3D" parent="Map" groups=["mat_concrete"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)

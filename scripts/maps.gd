@@ -127,7 +127,8 @@ func load_map(name):
 				player.queue_free()
 
 			player = self.init_player(current_scene.get_node("Entities"))
-			player.setpos(0, 1, 0)
+			if player:
+				player.setpos(0, 1, 0)
 		else:
 			Console.log("maps: skipping player creation, no playable world area!")
 
@@ -146,3 +147,4 @@ func load_map(name):
 		Console.log("No map found by name '%s'" % [name])
 		loading = false
 		return false
+

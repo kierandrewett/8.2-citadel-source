@@ -34,7 +34,6 @@ GameUIGUI="*res://ui/gameui_gui.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/borderless=true
 
 [editor_plugins]
 
