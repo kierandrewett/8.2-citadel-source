@@ -132,7 +132,7 @@ func load_map(name):
 				await get_tree().process_frame
 
 			player = self.init_player(current_scene.get_node("Entities"))
-			if player:
+			if player != null and "setpos" in player:
 				for i in range(0, 10):
 					await get_tree().process_frame
 				player.setpos(0, 1, 0)

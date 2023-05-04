@@ -16,6 +16,9 @@ extends Node
 @export var fov = 90
 @export var volume = 1
 
+@export var buddha = 0
+@export var god = 0
+
 @export var snd_musicvolume = 1
 
 func _ready():

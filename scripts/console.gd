@@ -69,6 +69,14 @@ func eval(input):
 			for c in collision_nodes:
 				c.disabled = false
 		return 0
+		
+	if command == "god" or command == "buddha":
+		Globals[command] = !Globals[command]
+		if Globals[command]:
+			self.log("%s ON" % [command])
+		else:
+			self.log("%s OFF" % [command])
+		return 0
 			
 	if command == "ent_fire":
 		if args.size() < 1:

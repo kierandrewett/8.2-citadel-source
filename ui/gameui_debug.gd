@@ -18,7 +18,7 @@ func _process(delta):
 		if player != null:
 			lines.append("name: %s" % ["Player"])
 			lines.append("pos: %s" % ["%s %s %s" % ["%.2f" % player.global_position.x, "%.2f" % player.global_position.y, "%.2f" % player.global_position.z] if player else ""])
-			lines.append("ang: %s" % ["%s %s %s" % ["%.2f" % player.camera.rotation.x, "%.2f" % player.camera.rotation.y, "%.2f" % player.camera.rotation.z] if player else ""])
+			lines.append("ang: %s" % ["%s %s %s %s" % ["%.2f" % player.camera.rotation.x, "%.2f" % player.camera.rotation.y, "%.2f" % player.camera.rotation.z, "%.2f" % player.get_floor_angle()] if player else ""])
 			lines.append("vel: %s" % ["%.2f" % (player.velocity.length() * 43.333 if player and player.velocity else 0.0)])
 	
 	player_information.text = "\n".join(lines)
