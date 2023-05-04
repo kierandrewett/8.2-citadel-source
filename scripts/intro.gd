@@ -13,6 +13,8 @@ func _ready():
 	
 	gameui.get_node("MainMenu").modulate.a = 0
 	
+	get_tree().root.set_content_scale_factor(DisplayServer.screen_get_dpi() / 100)
+	
 	Console.log("init: starting intro playback")
 	await get_tree().create_timer(1.0).timeout
 	play()

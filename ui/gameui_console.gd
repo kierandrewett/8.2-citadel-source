@@ -20,3 +20,7 @@ func on_input(event):
 				self.text = history[history_index]
 			elif event.keycode == KEY_ENTER:
 				history_index = len(history)
+
+			if event.keycode == KEY_UP or event.keycode == KEY_DOWN:
+				await get_tree().process_frame
+				self.set_caret_column(self.text.length())

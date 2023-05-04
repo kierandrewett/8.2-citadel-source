@@ -64,8 +64,56 @@ func eval(input):
 				c.disabled = false
 		return 0
 			
+	if command == "ent_fire":
+		if args.size() < 1:
+			self.log("Usage:\n    ent_fire <target> [action] [value] ")
+		
+		var target = args[0]
+		var action = null
+		var values = []
+		
+		if args.size() > 1:
+			action = args[1]
+		elif args.size() > 2:
+			values = args.slice(2)
+			
+		var targeted_node = Maps.current_scene.get_node(target)
+		
+		if targeted_node == null:
+			var matched = Utils.get_node_by_name(get_tree().root, target)
+			
+			if matched != null:
+				targeted_node = matched
+		
+		print(targeted_node)
+		
+		if targeted_node == null and instance_from_id(int(target)):
+			targeted_node = instance_from_id(int(target))
+				
+		if targeted_node == null:
+			self.log("No target found by '%s'." % [target])
+			return 1
+		
+		if action != null:
+			if action in targeted_node:
+				var typeof = typeof(targeted_node[action])
+				
+				# Function
+				if typeof.ends_with("::%s" % [action]):
+					self.log(targeted_node[action].call(values if values else []))
+				else:
+					self.log(targeted_node[action])
+			else:
+				self.log("No index '%s' on %s" % [action, targeted_node])
+				return 1
+			return 0
+		else:
+			self.log(targeted_node)
+			return 0
+		
 	if command in Globals and Globals[command] != null:
 		if args.size() == 0:
+			self.log("\"%s\" = \"%s\"" % [command, Globals[command]])
 			self.log("No value provided to convar!")
 		elif args.size() == 1:
 			if args[0].is_valid_int():

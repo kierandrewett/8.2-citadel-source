@@ -13,6 +13,10 @@ extends Node
 @export var sv_flick_deceleration_velocity = 1200
 
 @export var sensitivity = 3
+@export var fov = 90
+@export var volume = 1
+
+@export var snd_musicvolume = 1
 
 func _ready():
 	sv_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

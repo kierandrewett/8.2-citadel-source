@@ -2,7 +2,11 @@ extends Control
 
 var was_last_input_esc = false
 
+var focused = false
+
 func _ready():
+	focused = true
+	
 	get_viewport().connect("size_changed", Callable(self, "on_window_resize"))
 	get_viewport().connect("gui_focus_changed", Callable(self, "on_window_focus_changed"))
 	Maps.connect("map_changed", Callable(self, "on_map_loaded"))
@@ -31,9 +35,9 @@ func on_window_resize():
 		node.set_size(Vector2(node.get_size().x, y))
 
 func _physics_process(delta):
-	if get_parent().get_node("GameUILoading") and get_parent().get_node("GameUILoading").visible:
+	if get_parent().get_node("GameUILoading") and get_parent().get_node("GameUILoading").visible or get_node_or_null("/root/GameUIDeath"):
 		return
-	
+
 	if Input.is_action_just_pressed("gameui_console") and Maps.initted:
 		self.get_node("Console").visible = !self.get_node("Console").visible
 		if !Maps.is_background() and self.get_node("Console").visible:
@@ -115,5 +119,9 @@ func on_visibility_changed():
 func _notification(what):
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
+			focused = false
+			
 			if !Maps.is_background():
 				self.visible = true
+		NOTIFICATION_APPLICATION_FOCUS_IN:
+			focused = true

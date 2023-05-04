@@ -12,7 +12,7 @@ height = 0.83
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-floor_max_angle = 0.523599
+wall_min_slide_angle = 0.0
 script = ExtResource("1_x8ewo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -24,4 +24,4 @@ mesh = SubResource("CapsuleMesh_27c6v")
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420335, 0.00257504)
 cull_mask = 1048573
-fov = 90.0
+current = true

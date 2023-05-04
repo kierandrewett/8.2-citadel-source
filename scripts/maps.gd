@@ -115,6 +115,9 @@ func load_map(name):
 			get_parent().remove_child(scene_to_dispose)
 			scene_to_dispose.queue_free()
 		
+		if get_parent().get_node_or_null("/root/GameUIDeath"):
+			get_parent().get_node_or_null("/root/GameUIDeath").queue_free()
+
 		get_parent().add_child(current_scene)
 				
 		get_tree().current_scene = current_scene
@@ -125,9 +128,13 @@ func load_map(name):
 		
 			if player:
 				player.queue_free()
+				await get_tree().process_frame
+				await get_tree().process_frame
 
 			player = self.init_player(current_scene.get_node("Entities"))
 			if player:
+				for i in range(0, 10):
+					await get_tree().process_frame
 				player.setpos(0, 1, 0)
 		else:
 			Console.log("maps: skipping player creation, no playable world area!")

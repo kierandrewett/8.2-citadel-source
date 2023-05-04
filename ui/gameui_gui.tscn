@@ -15,10 +15,10 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_466mx"]
 bg_color = Color(0, 0, 0, 0.254902)
-corner_radius_top_left = 36
-corner_radius_top_right = 36
-corner_radius_bottom_right = 36
-corner_radius_bottom_left = 36
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="SystemFont" id="SystemFont_ff74j"]
 font_names = PackedStringArray("Sans-Serif")
@@ -46,18 +46,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1f7uq")
 
-[node name="CenterContainer" type="CenterContainer" parent="." groups=["window_xy"]]
+[node name="Crosshair" type="CenterContainer" parent="." groups=["window_xy"]]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="Control" type="Control" parent="CenterContainer"]
+[node name="Control" type="Control" parent="Crosshair"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="CenterContainer/Control"]
+[node name="Panel" type="Panel" parent="Crosshair/Control"]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 11.0
@@ -66,7 +66,7 @@ offset_bottom = 13.0
 theme = SubResource("Theme_y72do")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlpgp")
 
-[node name="Panel1" type="Panel" parent="CenterContainer/Control"]
+[node name="Panel1" type="Panel" parent="Crosshair/Control"]
 layout_mode = 0
 offset_left = 29.0
 offset_top = 19.0
@@ -75,7 +75,7 @@ offset_bottom = 21.0
 theme = SubResource("Theme_y72do")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlpgp")
 
-[node name="Panel2" type="Panel" parent="CenterContainer/Control"]
+[node name="Panel2" type="Panel" parent="Crosshair/Control"]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 27.0
@@ -84,7 +84,7 @@ offset_bottom = 29.0
 theme = SubResource("Theme_y72do")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlpgp")
 
-[node name="Panel3" type="Panel" parent="CenterContainer/Control"]
+[node name="Panel3" type="Panel" parent="Crosshair/Control"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 19.0
@@ -93,35 +93,43 @@ offset_bottom = 21.0
 theme = SubResource("Theme_y72do")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rlpgp")
 
-[node name="VFlowContainer" type="VFlowContainer" parent="."]
+[node name="HUD" type="HFlowContainer" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -88.0
 grow_horizontal = 2
-grow_vertical = 2
-alignment = 2
+grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer" groups=["window_xy"]]
+[node name="MarginContainer" type="MarginContainer" parent="HUD" groups=["window_xy"]]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VFlowContainer/MarginContainer"]
+[node name="VFlowContainer" type="VFlowContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 32
+
+[node name="HealthContainer" type="HBoxContainer" parent="HUD/MarginContainer/VFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="Panel" type="Panel" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("2_a2yd1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_466mx")
 
-[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 12
@@ -129,18 +137,18 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+[node name="HealthBox" type="HSplitContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 24
 dragger_visibility = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer/HealthBox"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Health" type="Label" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer"]
+[node name="Health" type="Label" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer/HealthBox/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_c2wqc")
 theme_override_colors/font_color = Color(0.976471, 0.85098, 0.172549, 1)
@@ -148,16 +156,76 @@ text = "Health"
 vertical_alignment = 2
 uppercase = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer"]
+[node name="ValueContainer" type="VBoxContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer/HealthBox"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer2"]
+[node name="Container" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer/HealthBox/ValueContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = -6
 
-[node name="Amount" type="Label" parent="VFlowContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/HSplitContainer/VBoxContainer2/MarginContainer"]
+[node name="Amount" type="Label" parent="HUD/MarginContainer/VFlowContainer/HealthContainer/MarginContainer/MarginContainer/HealthBox/ValueContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_c2wqc")
+theme_override_colors/font_color = Color(0.976471, 0.85098, 0.172549, 1)
+theme_override_font_sizes/font_size = 29
+text = "100"
+label_settings = SubResource("LabelSettings_l5isd")
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="SuitContainer" type="HBoxContainer" parent="HUD/MarginContainer/VFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_a2yd1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_466mx")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 12
+
+[node name="SuitBox" type="HSplitContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 24
+dragger_visibility = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer/SuitBox"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Suit" type="Label" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer/SuitBox/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_c2wqc")
+theme_override_colors/font_color = Color(0.976471, 0.85098, 0.172549, 1)
+text = "Suit"
+vertical_alignment = 2
+uppercase = true
+
+[node name="ValueContainer" type="VBoxContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer/SuitBox"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="Container" type="MarginContainer" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer/SuitBox/ValueContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -6
+
+[node name="Amount" type="Label" parent="HUD/MarginContainer/VFlowContainer/SuitContainer/MarginContainer/MarginContainer/SuitBox/ValueContainer/Container"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = SubResource("Theme_c2wqc")

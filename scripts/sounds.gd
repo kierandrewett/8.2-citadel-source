@@ -2,7 +2,7 @@ extends Node
 
 var sounds_playing = {}
 
-func play_sound(path, node = get_parent(), volume = 1, max_distance = 50) -> AudioStreamPlayer:
+func play_sound(path, node = get_parent(), volume = Globals.volume, pitch = 1) -> AudioStreamPlayer:
 	var resource = ResourceLoader.load(path)
 	
 	var player = AudioStreamPlayer.new()
@@ -10,6 +10,7 @@ func play_sound(path, node = get_parent(), volume = 1, max_distance = 50) -> Aud
 	
 	player.set_stream(resource)
 	player.volume_db = volume
+	player.pitch_scale = pitch
 
 	player.play()
 
