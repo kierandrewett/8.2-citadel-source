@@ -34,6 +34,12 @@ func eval(input):
 		command = input.split(" ")[0]
 		args = input.split(" ").slice(1)
 		
+	var i = 0
+	for item in args:
+		if item.length() == 0:
+			args.remove_at(i)
+		i = i + 1
+		
 	if command == "map":
 		if args.size():
 			Maps.load_map(args[0])
@@ -71,11 +77,11 @@ func eval(input):
 		var target = args[0]
 		var action = null
 		var values = []
-		
+
 		if args.size() > 1:
 			action = args[1]
-		elif args.size() > 2:
-			values = args.slice(2)
+		
+		values = args.slice(2)
 			
 		var targeted_node = Maps.current_scene.get_node(target)
 		
@@ -84,8 +90,6 @@ func eval(input):
 			
 			if matched != null:
 				targeted_node = matched
-		
-		print(targeted_node)
 		
 		if targeted_node == null and instance_from_id(int(target)):
 			targeted_node = instance_from_id(int(target))
@@ -99,10 +103,22 @@ func eval(input):
 				var typeof = typeof(targeted_node[action])
 				
 				# Function
-				if typeof.ends_with("::%s" % [action]):
+				if typeof(typeof) == TYPE_STRING and typeof.ends_with("::%s" % [action]):
 					self.log(targeted_node[action].call(values if values else []))
 				else:
-					self.log(targeted_node[action])
+					if values.size() >= 1 and values[0] != null:
+						var parsed
+						
+						if values[0].is_valid_int():
+							parsed = int(values[0])
+						elif values[0].is_valid_float():
+							parsed = float(values[0])
+						else:
+							parsed = values[0]
+						targeted_node[action] = parsed
+						self.log("\"%s.%s\" = \"%s\"" % [targeted_node, action, parsed])
+					else:
+						self.log(targeted_node[action])
 			else:
 				self.log("No index '%s' on %s" % [action, targeted_node])
 				return 1
